@@ -7,18 +7,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class FileReader {
 
     private String path = "src/main/java/Day%/input.txt";
 
-    public FileReader(String inputPath,boolean usePaths) throws IOException {
-        Path filePath = Paths.get(inputPath);
-
-        //Stream
-        Files.lines(filePath).forEach(System.out::println);
-    }
     public FileReader(String day){
         path = path.replace("%",day);
     }
@@ -33,14 +29,10 @@ public class FileReader {
         return lines;
     }
 
-    public ArrayList<String> readFileIntoListOfStrings() throws FileNotFoundException {
-        Scanner scanner = new Scanner(new File(path));
-        ArrayList<String> lines = new ArrayList<>();
-        while(scanner.hasNextLine()) {
-            lines.add(scanner.nextLine());
-        }
-        scanner.close();
-        return lines;
+    public List<String> readFileIntoListOfStrings() throws IOException {
+        Path filePath = Paths.get(path);
+        return Files.lines(filePath)
+                .collect(Collectors.toList());
     }
 }
 
