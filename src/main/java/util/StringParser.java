@@ -24,6 +24,18 @@ public class StringParser {
         return !numberList.isEmpty() ? numberList.stream().map(Long::parseLong).collect(Collectors.toList()) : Collections.EMPTY_LIST;
     }
 
+    public static List<String> extractSubStringsFromStringToList(String stringToParse) {
+        Pattern integerPattern = Pattern.compile("\\w+");
+        Matcher matcher = integerPattern.matcher(stringToParse);
+
+        List<String> numberList = new ArrayList<>();
+        while (matcher.find()) {
+            numberList.add(matcher.group());
+        }
+
+        return numberList;
+    }
+
     public static String extractNumbersFromStringToOneBigNumberString(String stringToParse) {
         Pattern integerPattern = Pattern.compile("\\d+");
         Matcher matcher = integerPattern.matcher(stringToParse);
@@ -35,4 +47,7 @@ public class StringParser {
 
         return !numberList.isEmpty() ? numberList.stream().collect(Collectors.joining()) : "";
     }
+
+
+
 }
