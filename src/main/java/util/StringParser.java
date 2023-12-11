@@ -13,7 +13,7 @@ public class StringParser {
     }
 
     public static List<Long> extractNumbersFromStringToList(String stringToParse) {
-        Pattern integerPattern = Pattern.compile("\\d+");
+        Pattern integerPattern = Pattern.compile("-?\\d+");
         Matcher matcher = integerPattern.matcher(stringToParse);
 
         List<String> numberList = new ArrayList<>();
